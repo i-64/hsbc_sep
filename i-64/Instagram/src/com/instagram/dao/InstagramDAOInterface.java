@@ -5,8 +5,8 @@ import com.instagram.entity.InstagramUser;
 public interface InstagramDAOInterface {
 	
 	public int createAccountDAO(InstagramUser u);
-	public void updateAccountDAO();
-	public void postDAO();
-	public void disableAccountDAO();
-	public void deleteAccountDAO();
+	public int updateAccountDAO(InstagramUser u, InstagramUser newU);
+	public int postDAO(InstagramUser u);
+	public int disableAccountDAO(InstagramUser u);
+	public int deleteAccountDAO(InstagramUser u);
 }

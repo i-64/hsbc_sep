@@ -17,27 +17,45 @@ public class InstagramDAO implements InstagramDAOInterface {
 	}
 
 	@Override
-	public void updateAccountDAO() {
+	public int updateAccountDAO(InstagramUser u, InstagramUser newU) {
 		// TODO Auto-generated method stub
-		System.out.println("Updating Account ...");
+		if (u.getPassword().equalsIgnoreCase("Mrunal")) {
+			
+			u.setName(newU.getName());
+			u.setEmail(newU.getEmail());
+			u.setUsername(newU.getUsername());
+			u.setPassword(newU.getPassword());
+			return 1;
+		}
+		else
+			return 0;
 	}
 
 	@Override
-	public void postDAO() {
+	public int postDAO(InstagramUser u) {
 		// TODO Auto-generated method stub
-		System.out.println("Posting ...");
+		if (u.getPassword().equalsIgnoreCase("Mrunal"))
+			return 1;
+		else
+			return 0;
 	}
 
 	@Override
-	public void disableAccountDAO() {
+	public int disableAccountDAO(InstagramUser u) {
 		// TODO Auto-generated method stub
-		System.out.println("Disabling Account ...");
+		if (u.getPassword().equalsIgnoreCase("Mrunal"))
+			return 1;
+		else
+			return 0;
 	}
 
 	@Override
-	public void deleteAccountDAO() {
+	public int deleteAccountDAO(InstagramUser u) {
 		// TODO Auto-generated method stub
-		System.out.println("Deleting Account ...");
+		if (u.getPassword().equalsIgnoreCase("Mrunal"))
+			return 1;
+		else
+			return 0;
 	}
 
 }

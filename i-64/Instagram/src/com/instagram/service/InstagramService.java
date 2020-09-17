@@ -19,27 +19,27 @@ public class InstagramService implements InstagramServiceInterface {
 	}
 
 	@Override
-	public void updateAccountService() {
+	public int updateAccountService(InstagramUser u, InstagramUser newU) {
 		// TODO Auto-generated method stub
-		d.updateAccountDAO();
+		return d.updateAccountDAO(u, newU);
 	}
 
 	@Override
-	public void postService() {
+	public int postService(InstagramUser u) {
 		// TODO Auto-generated method stub
-		d.postDAO();
+		return d.postDAO(u);
 	}
 
 	@Override
-	public void disableAccountService() {
+	public int disableAccountService(InstagramUser u) {
 		// TODO Auto-generated method stub
-		d.disableAccountDAO();
+		return d.disableAccountDAO(u);
 	}
 
 	@Override
-	public void deleteAccountService() {
+	public int deleteAccountService(InstagramUser u) {
 		// TODO Auto-generated method stub
-		d.deleteAccountDAO();
+		return d.deleteAccountDAO(u);
 	}
 
 }

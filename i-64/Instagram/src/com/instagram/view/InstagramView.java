@@ -45,6 +45,9 @@ public class InstagramView {
 		case 5:
 			ic.deleteAccount();
 			break;
+		case 6:
+			ic.resetPassword();
+			break;
 		default:
 				System.out.println("Invalid Choice");
 		}

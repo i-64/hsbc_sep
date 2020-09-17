@@ -1,10 +1,10 @@
-package view;
+package com.instagram.view;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import controller.IntsagramController;
+import com.instagram.controller.IntsagramController;
 
 public class InstagramView {
 

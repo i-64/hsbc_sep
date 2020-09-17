@@ -1,6 +1,7 @@
-package service;
+package com.instagram.service;
 
-import dao.InstagramDAO;
+import com.instagram.dao.InstagramDAO;
+import com.instagram.entity.InstagramUser;
 
 public class InstagramService implements InstagramServiceInterface {
 	
@@ -12,9 +13,9 @@ public class InstagramService implements InstagramServiceInterface {
 	}
 
 	@Override
-	public void createAccountService() {
+	public int createAccountService(InstagramUser u) {
 		// TODO Auto-generated method stub
-		d.createAccountDAO();
+		return d.createAccountDAO(u);
 	}
 
 	@Override

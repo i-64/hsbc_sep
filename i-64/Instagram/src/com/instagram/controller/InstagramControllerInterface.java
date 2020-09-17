@@ -1,4 +1,4 @@
-package controller;
+package com.instagram.controller;
 
 public interface InstagramControllerInterface {
 

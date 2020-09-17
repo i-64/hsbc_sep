@@ -1,11 +1,19 @@
-package dao;
+package com.instagram.dao;
+
+import com.instagram.entity.InstagramUser;
 
 public class InstagramDAO implements InstagramDAOInterface {
 
 	@Override
-	public void createAccountDAO() {
+	public int createAccountDAO(InstagramUser u) {
 		// TODO Auto-generated method stub
-		System.out.println("Creating Account ...");
+		
+		if (u.getName().equalsIgnoreCase("Mrunal"))
+			return 1;
+		else
+			return 0;
+		
+//		System.out.println("Creating Account ...");
 	}
 
 	@Override

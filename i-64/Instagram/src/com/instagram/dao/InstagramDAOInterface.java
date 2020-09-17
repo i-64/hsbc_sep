@@ -1,8 +1,10 @@
-package dao;
+package com.instagram.dao;
+
+import com.instagram.entity.InstagramUser;
 
 public interface InstagramDAOInterface {
 	
-	public void createAccountDAO();
+	public int createAccountDAO(InstagramUser u);
 	public void updateAccountDAO();
 	public void postDAO();
 	public void disableAccountDAO();

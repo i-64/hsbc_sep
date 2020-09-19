@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sat Sep 19 18:18:31 IST 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0174-a668-ac30-0000067667e8 
+on database directory /home/i-64/Downloads/mydb with class loader sun.misc.Launcher$AppClassLoader@3d4eac69 
+Loaded from file:/home/i-64/Downloads/db-derby-10.13.1.1-bin/lib/derby.jar
+java.vendor=Private Build
+java.runtime.version=1.8.0_265-8u265-b01-0ubuntu2~20.04-b01
+user.dir=/home/i-64/Documents/Training/Instagram
+os.name=Linux
+os.arch=amd64
+os.version=5.4.0-47-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

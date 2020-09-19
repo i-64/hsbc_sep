@@ -1,6 +1,7 @@
 package com.instagram.service;
 
 import com.instagram.dao.InstagramDAO;
+import java.util.*;
 import com.instagram.entity.InstagramUser;
 
 public class InstagramService implements InstagramServiceInterface {
@@ -17,6 +18,12 @@ public class InstagramService implements InstagramServiceInterface {
 		// TODO Auto-generated method stub
 		return d.createAccountDAO(u);
 	}
+	
+	@Override
+	public InstagramUser authService (InstagramUser u) {
+		
+		return d.authDAO(u);
+	}
 
 	@Override
 	public int updateAccountService(InstagramUser u, InstagramUser newU) {
@@ -25,15 +32,15 @@ public class InstagramService implements InstagramServiceInterface {
 	}
 
 	@Override
-	public int postService(InstagramUser u) {
+	public InstagramUser viewAccountService(InstagramUser u) {
 		// TODO Auto-generated method stub
-		return d.postDAO(u);
+		return d.viewAccountDAO(u);
 	}
 
 	@Override
-	public int disableAccountService(InstagramUser u) {
+	public ArrayList<InstagramUser> viewAllProfiles() {
 		// TODO Auto-generated method stub
-		return d.disableAccountDAO(u);
+		return d.viewAllProfiles();
 	}
 
 	@Override

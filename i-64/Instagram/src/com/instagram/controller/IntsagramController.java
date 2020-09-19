@@ -4,6 +4,7 @@ import java.io.*;
 
 import com.instagram.entity.InstagramUser;
 import com.instagram.service.InstagramService;
+import java.util.*;
 
 public class IntsagramController implements InstagramControllerInterface {
 	
@@ -15,12 +16,12 @@ public class IntsagramController implements InstagramControllerInterface {
 	}
 
 	@Override
-	public void createAccount() {
-		// TODO Auto-generated method stub
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	public InstagramUser createAccount() {
 		
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String name = "", email = "", username = "", password = "";
 		try {
+			
 			System.out.println("Enter your name >> ");
 			name = in.readLine();
 			System.out.println("Enter your email >> ");
@@ -45,24 +46,55 @@ public class IntsagramController implements InstagramControllerInterface {
 		if (res > 0) {
 			
 			System.out.println("User successfully created");
+			return u;
 		}
 		else {
 			
 			System.out.println("Could not create new user :(");
+			return null;
 		}
 	}
-
-	@Override
-	public void updateAccount() {
-		// TODO Auto-generated method stub
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	
+	public InstagramUser signIn () {
 		
-		String newUsername = "", newPassword = "", name = "", email = "", username = "", password = "";
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		String username = "", password = "";
+		
 		try {
 			System.out.println("Enter your username >> ");
 			username = in.readLine();
 			System.out.println("Enter your password >> ");
 			password = in.readLine();
+		}
+		catch (IOException e) {
+			
+			System.out.println("An error occurred :\n" + e.toString());
+		}
+		InstagramUser u = new InstagramUser();
+		u.setUsername(username);
+		u.setPassword(password);
+		
+		InstagramUser user = is.authService(u);
+		
+		if (user != null) {
+			
+			System.out.println("Signed in as " + user.getUsername());
+			return user;
+		}
+		else {
+			
+			System.out.println("Authentication error :(");
+			return null;
+		}
+	}
+
+	@Override
+	public InstagramUser updateAccount(InstagramUser u) {
+		// TODO Auto-generated method stub
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		
+		String newUsername = "", newPassword = "", name = "", email = "";
+		try {
 			System.out.println("Enter new name >> ");
 			name = in.readLine();
 			System.out.println("Enter new email >> ");
@@ -76,10 +108,7 @@ public class IntsagramController implements InstagramControllerInterface {
 			
 			System.out.println("An error occurred :\n" + e.toString());
 		}
-		InstagramUser u = new InstagramUser();
 		InstagramUser newU = new InstagramUser();
-		u.setUsername(username);
-		u.setPassword(password);
 		newU.setEmail(email);
 		newU.setName(name);
 		newU.setUsername(newUsername);
@@ -90,24 +119,24 @@ public class IntsagramController implements InstagramControllerInterface {
 		if (res > 0) {
 			
 			System.out.println("User successfully updated");
+			return newU;
 		}
 		else {
 			
 			System.out.println("Could not update new user :(");
+			return null;
 		}
 	}
 
 	@Override
-	public void post() {
+	public void viewAccount() {
 		// TODO Auto-generated method stub
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		
-		String name = "", email = "", username = "", password = "";
+		String username = "";
 		try {
-			System.out.println("Enter your username >> ");
+			System.out.println("Enter username >> ");
 			username = in.readLine();
-			System.out.println("Enter your password >> ");
-			password = in.readLine();
 		}
 		catch (IOException e) {
 			
@@ -115,45 +144,31 @@ public class IntsagramController implements InstagramControllerInterface {
 		}
 		InstagramUser u = new InstagramUser();
 		u.setUsername(username);
-		u.setPassword(password);
 		
-		int res = is.postService(u);
+		InstagramUser user = is.viewAccountService(u);
 		
-		if (res > 0) {
-			
-			System.out.println("Post made");
+		if (user != null) {
+			System.out.println("User profile found:\nName: " + user.getName() + "\nEmail: " + user.getEmail() + "\nUsername: " + user.getUsername());
 		}
 		else {
 			
-			System.out.println("Could not post :(");
+			System.out.println("Could not find such user :(");
 		}
 	}
 
 	@Override
-	public void disableAccount() {
+	public void viewAllProfiles() {
 		// TODO Auto-generated method stub
-BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		
-		String name = "", email = "", username = "", password = "";
-		try {
-			System.out.println("Enter your username >> ");
-			username = in.readLine();
-			System.out.println("Enter your password >> ");
-			password = in.readLine();
-		}
-		catch (IOException e) {
+		ArrayList<InstagramUser> l = is.viewAllProfiles();
+		
+		if (l.size() >= 1) {
 			
-			System.out.println("An error occurred :\n" + e.toString());
-		}
-		InstagramUser u = new InstagramUser();
-		u.setUsername(username);
-		u.setPassword(password);
-		
-		int res = is.disableAccountService(u);
-		
-		if (res > 0) {
-			
-			System.out.println("Account  disabled");
+			for (InstagramUser u: l) {
+				
+				System.out.println("Name: " + u.getName() + "\temail: " + u.getEmail() + "\tusername: " + u.getUsername());
+			}
+			System.out.println("\n");
 		}
 		else {
 			
@@ -162,34 +177,16 @@ BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	}
 
 	@Override
-	public void deleteAccount() {
-		// TODO Auto-generated method stub
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		
-		String name = "", email = "", username = "", password = "";
-		try {
-			System.out.println("Enter your username >> ");
-			username = in.readLine();
-			System.out.println("Enter your password >> ");
-			password = in.readLine();
-		}
-		catch (IOException e) {
-			
-			System.out.println("An error occurred :\n" + e.toString());
-		}
-		InstagramUser u = new InstagramUser();
-		u.setUsername(username);
-		u.setPassword(password);
+	public void deleteAccount(InstagramUser u) {
 		
 		int res = is.deleteAccountService(u);
-		
 		if (res > 0) {
 			
 			System.out.println("Account  deleted");
 		}
 		else {
 			
-			System.out.println("Authentication error :(");
+			System.out.println("Could not delete account :(");
 		}
 	}
 

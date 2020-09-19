@@ -1,11 +1,13 @@
 package com.instagram.controller;
 
+import com.instagram.entity.*;
+
 public interface InstagramControllerInterface {
 
-	public void createAccount();
-	public void updateAccount();
-	public void post();
+	public InstagramUser createAccount();
+	public void viewAccount();
 	public int resetPassword();
-	public void disableAccount();
-	public void deleteAccount();
+	public void viewAllProfiles();
+	public void deleteAccount(InstagramUser u);
+	InstagramUser updateAccount(InstagramUser u);
 }

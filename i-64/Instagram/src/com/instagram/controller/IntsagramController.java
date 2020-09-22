@@ -4,7 +4,11 @@ import java.io.*;
 
 import com.instagram.entity.InstagramUser;
 import com.instagram.service.InstagramService;
+import com.instagram.utility.InstagramException;
+import com.instagram.utility.SortByName;
+
 import java.util.*;
+import com.instagram.utility.*;
 
 public class IntsagramController implements InstagramControllerInterface {
 	
@@ -12,7 +16,7 @@ public class IntsagramController implements InstagramControllerInterface {
 	
 	public IntsagramController () {
 		
-		is = new InstagramService();
+		is = ServiceFactory.createObject("adminservice");
 	}
 
 	@Override
@@ -145,7 +149,15 @@ public class IntsagramController implements InstagramControllerInterface {
 		InstagramUser u = new InstagramUser();
 		u.setUsername(username);
 		
-		InstagramUser user = is.viewAccountService(u);
+		InstagramUser user = null;
+		
+		try {
+			user = is.viewAccountService(u);
+		}
+		catch (InstagramException e) {
+			
+			System.out.println(e);
+		}
 		
 		if (user != null) {
 			System.out.println("User profile found:\nName: " + user.getName() + "\nEmail: " + user.getEmail() + "\nUsername: " + user.getUsername());
@@ -161,6 +173,8 @@ public class IntsagramController implements InstagramControllerInterface {
 		// TODO Auto-generated method stub
 		
 		ArrayList<InstagramUser> l = is.viewAllProfiles();
+		
+		Collections.sort(l, new SortByName());
 		
 		if (l.size() >= 1) {
 			
@@ -206,6 +220,27 @@ public class IntsagramController implements InstagramControllerInterface {
 //			System.out.println("An error occurred :\n" + e.toString());
 //		}
 		return 0;
+	}
+	
+	public void mapDemo () {
+		
+		Map <String, ArrayList <InstagramUser>> mp = is.mapDemoService();
+		ArrayList <InstagramUser> l1 = mp.get("users"), l2 = mp.get("users2");
+		
+		for (InstagramUser u: l1) {
+			
+			System.out.println(u.toString());
+		}
+		for (InstagramUser u: l2) {
+			
+			System.out.println(u.toString());
+		}
+	}
+
+	@Override
+	public void exportData() {
+		// TODO Auto-generated method stub
+		is.exportDataService();
 	}
 
 }

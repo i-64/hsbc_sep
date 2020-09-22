@@ -1,8 +1,10 @@
 package com.instagram.service;
 
 import com.instagram.dao.InstagramDAO;
+import com.instagram.utility.*;
 import java.util.*;
 import com.instagram.entity.InstagramUser;
+import com.instagram.utility.InstagramException;
 
 public class InstagramService implements InstagramServiceInterface {
 	
@@ -10,7 +12,7 @@ public class InstagramService implements InstagramServiceInterface {
 	
 	public InstagramService () {
 		
-		d = new InstagramDAO();
+		d = DAOFactory.DAOObject("admindao");
 	}
 
 	@Override
@@ -32,7 +34,7 @@ public class InstagramService implements InstagramServiceInterface {
 	}
 
 	@Override
-	public InstagramUser viewAccountService(InstagramUser u) {
+	public InstagramUser viewAccountService(InstagramUser u) throws InstagramException {
 		// TODO Auto-generated method stub
 		return d.viewAccountDAO(u);
 	}
@@ -47,6 +49,18 @@ public class InstagramService implements InstagramServiceInterface {
 	public int deleteAccountService(InstagramUser u) {
 		// TODO Auto-generated method stub
 		return d.deleteAccountDAO(u);
+	}
+	
+	public Map <String, ArrayList <InstagramUser>> mapDemoService() {
+		
+		return d.mapDemo();
+	}
+
+	@Override
+	public void exportDataService() {
+		// TODO Auto-generated method stub
+		
+		d.exportDataDAO();
 	}
 
 }

@@ -9,5 +9,6 @@ public interface InstagramControllerInterface {
 	public int resetPassword();
 	public void viewAllProfiles();
 	public void deleteAccount(InstagramUser u);
-	InstagramUser updateAccount(InstagramUser u);
+	public InstagramUser updateAccount(InstagramUser u);
+	public void exportData ();
 }

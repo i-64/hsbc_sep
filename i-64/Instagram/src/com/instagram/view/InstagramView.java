@@ -12,7 +12,7 @@ public class InstagramView {
 	public static void main(String[] args) {
 		
 		try {
-		
+			
 			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 			while (true) {
 				
@@ -29,6 +29,12 @@ public class InstagramView {
 						break;
 					case 2:
 						currUser = ic.signIn();
+						break;
+					case 3:
+						ic.mapDemo();
+						break;
+					case 4:
+						ic.exportData();
 						break;
 					default:
 						System.out.println("Invalid choice :(");

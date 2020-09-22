@@ -36,5 +36,8 @@ public class InstagramUser {
 		this.password = password;
 	}
 	
-	
+	@Override
+	public String toString () {
+		return ("name: " + this.name + " email: " + this.email + " username: " + this.username);
+	}
 }
